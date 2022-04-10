@@ -1,0 +1,39 @@
+{% extends 'portfolioapp/base.html' %}
+
+{% block content %}
+<body>
+    <div class="dashboard-container">
+        <div>  
+            <h1>Create New Project</h1>
+            <form class="dashboard-form" action="" method="POST">
+                {% csrf_token %}
+                
+                {{projectform}}
+                
+                <input class="dashboard-input" type="submit" name="Submit">
+            </form>
+        </div>
+        <hr>
+        <table class="table">
+            <tr>
+                <th>Project Name</th>
+                <th>Description</th>
+                <th>Link</th>
+                <th>Author</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+            {% for project in projects %}
+            <tr>
+                <td>{{project.project_name}}</td>
+                <td>{{project.project_description}}</td>
+                <td>{{project.project_link}}</td>
+                <td>{{project.author}}</td>
+                <td><a href="{% url 'update_project' project.id %}"><button class="edit"> Update </button> </a></td>
+                <td><a  href="{% url 'delete_project' project.id %}"><button class="danger"> Delete </button> </a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+        
+        {% endblock %}

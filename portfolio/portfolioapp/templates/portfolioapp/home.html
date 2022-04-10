@@ -1,0 +1,22 @@
+{% extends 'portfolioapp/base.html' %}
+
+{% block content %}
+
+    <div class="portfolio-container">
+        <h1>Welcome</h1>
+        <h2>Check out my projects </h2>
+        <div class="portfolio-cards-wrapper">
+        {% if projects %}
+            {% for project in projects %}
+                <div class="portfolio-card">
+                    <h3>{{project.project_name}}</h3>
+                    <span class="description">{{project.project_description}}</span>
+                    <a href="{{project.project_link}}" target="_blank" rel="noopener noreferrer"><button>Open</button></a>
+                </div>
+            {% endfor %}
+        {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+
